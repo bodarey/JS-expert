@@ -1,2 +1,0 @@
-// operators
-console.log("abc");
