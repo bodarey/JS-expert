@@ -23,7 +23,7 @@
 		str += s;
 	}
 	function isNumbersEqual(){
-		(firstNumber == secondNumber) ? (setResult(`:  Numbers are equal ${firstNumber}  `)) : (setResult(''));
+		(firstNumber == secondNumber) ? (setResult(`:  <i>Numbers are equal ${firstNumber}  </i>`)) : (setResult(''));
 	}
 	function isBigDifference(){
 		((firstNumber < 3 && secondNumber > 4) || (secondNumber < 3 && firstNumber > 4)) ? (setResult(`:<i> there is big diference between numbers ${Math.abs(secondNumber - firstNumber)}</i>`)) : (setResult(''));
