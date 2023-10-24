@@ -4,7 +4,7 @@
 	var str ='';
 	var play = document.getElementById('play');
 	var clear = document.getElementById('clear');
-	
+	// lambda functions return text to substitute in HTML later
  	var firstMsg = () => `first player win, the result is firstPlayer: ${getNameById(firstPlayer)} | secondPlayer: ${getNameById(secondPlayer)}  </br>`;
 	var secondMsg = () =>`second player win, the result is firstPlayer: ${getNameById(firstPlayer)}| secondPlayer: ${getNameById(secondPlayer)}  </br>`;
 
@@ -35,42 +35,35 @@
 		switch (firstPlayer) {
 			case 1:
 				if (secondPlayer == 2) {
-					str += firstMsg();
-					//return 'firstPlayer';
+					str += firstMsg();					
 				} else {
-					str += secondMsg();
-					//return 'secondPlayer';
+					str += secondMsg();					
 				}
 				break;	
 			case 2:
 				if (secondPlayer == 1) {
-					str += secondMsg();
-					//return 'secondPlayer';
+					str += secondMsg();					
 				} else {
-					str += firstMsg();
-					//return 'firstPlayer';
+					str += firstMsg();					
 				}
 				break;
 			case 3:
 				if (secondPlayer == 1) {
-					str += firstMsg();
-					//return 'firstPlayer';
+					str += firstMsg();					
 				} else {
-					str += secondMsg();
-					//return 'secondPlayer';
+					str += secondMsg();					
 				}
 				break;
-			default:
-				//return undefined;
+			default:				
 				break;
 		}
 	}
 
-	function PrintResult(id){
+	function PrintResult(id){ // printing the result in HTML with element id from document
 		document.getElementById(id).innerHTML = str;
 	}
 
-	function start(){
+	function start(){  //function to run the play button
 		firstPlayer = getTurn();
 		secondPlayer = getTurn();
 		getWinner();
@@ -78,15 +71,14 @@
 
 	}
 
-	function close(){
-		document.getElementById('result').innerHTML = '';
-		str ='';
+	function clearStr(){ // functio to run the clear button
+		(function(div ='result'){
+			document.getElementById(div).innerHTML = '';
+			str ='';
+		}())
 	}
 	
 	play.addEventListener('click',start);
-	clear.addEventListener('click',close);
-	for (var i = 0; i <100; i++) {
-		console.log(getTurn());
-	}
-
+	clear.addEventListener('click',clearStr);
+	
 }())
