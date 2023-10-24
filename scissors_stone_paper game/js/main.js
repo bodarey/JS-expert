@@ -71,7 +71,7 @@
 
 	}
 
-	function clearStr(){ // functio to run the clear button
+	function clearStr(){ // function to run the clear button
 		(function(div ='result'){
 			document.getElementById(div).innerHTML = '';
 			str ='';
