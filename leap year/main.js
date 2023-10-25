@@ -15,5 +15,16 @@ function leapYear(n){
 
 }
 
+function leap(n){
+	if (!isNaN(n)) {
+	return (n % 400 == 0) ? (true) : (  (n % 100 == 0) ? (false) : ( (n % 4 == 0) ? (true) :( false) )  );
+	}
+	return 'error';
+}
 
+// console.log(leap(2024));
 console.log(leapYear('2000'));
+
+
+
+
