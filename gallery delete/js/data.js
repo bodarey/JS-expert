@@ -4,7 +4,7 @@ var data = [{
 	name: "CHEVROLET",
 	id : 1,
 	params: {
-		status: true∫,
+		status: true,
 		progress: "80"
 	},
 	description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
