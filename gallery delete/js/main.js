@@ -5,11 +5,15 @@ var btn = document.getElementById('play');
 var statGallery = getGalleryfromData(data);
 var gallery = [];
 var firstBlock = document.getElementById('first-line');
+var lineSelector = document.getElementById('line-selector');
+
+
 
  //#################
 function init(){ // main function for eventListener switch the type and number of elements in gallery
     showGalleryText(statGallery);
-    var lineSelector = parseInt(document.getElementById('line-selector').value);
+    filterGallery();
+    
     insertPicture();
 }
 function deleteImage(event){
@@ -52,6 +56,34 @@ function addToGalleryfromStatGallery(){
             return statGallery[i];
         }
     }
+}
+//#################
+function  filterGallery(){
+    var local = localStorage.getItem('menu') || 0 ;
+    switch (parseInt(local)) {
+        case 0:
+            lineSelector.value = 0;
+           // gallery = gallery.sort(function(a,b){return a.name > b.name});
+            console.log(gallery);
+            break;
+            case 1:
+                lineSelector.value = 1;
+            
+            break;
+            case 2:
+                lineSelector.value = 2;
+            break;
+            case 3:
+                lineSelector.value = 3;
+            
+            break;
+    
+        default:
+            break;
+    }
+
+
+
 }
 //#################// show gallery with text depend on array of objects
 function  showGalleryText(gallery){ 
