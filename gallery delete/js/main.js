@@ -7,13 +7,9 @@ var gallery = [];
 var firstBlock = document.getElementById('first-line');
 var lineSelector = document.getElementById('line-selector');
 
-
-
  //#################
 function init(){ // main function for eventListener switch the type and number of elements in gallery
     showGalleryText(statGallery);
-    filterGallery();
-    
     insertPicture();
 }
 function deleteImage(event){
@@ -58,32 +54,42 @@ function addToGalleryfromStatGallery(){
     }
 }
 //#################
-function  filterGallery(){
-    var local = localStorage.getItem('menu') || 0 ;
+function  filterGallery(arr){
+    var local = localStorage.getItem('menu') || 0;
     switch (parseInt(local)) {
         case 0:
             lineSelector.value = 0;
-           // gallery = gallery.sort(function(a,b){return a.name > b.name});
-            console.log(gallery);
+            arr.sort(function(a,b){
+                if (a.name < b.name) {return -1;}
+                if (a.name > b.name) {return 1;}
+                return 0;
+            });
             break;
             case 1:
                 lineSelector.value = 1;
+                 arr.sort(function(a,b){
+                    if (a.name < b.name) {return 1;}
+                    if (a.name > b.name) {return -1;}
+                    return 0;
+                 });
             
             break;
             case 2:
                 lineSelector.value = 2;
+                arr.sort(function(a,b){                    
+                    return (a.date - b.date);
+                 });
+
             break;
             case 3:
                 lineSelector.value = 3;
-            
+                arr.sort(function(a,b){
+                  return (b.date - a.date);
+                 });
             break;
-    
         default:
-            break;
+        break;
     }
-
-
-
 }
 //#################// show gallery with text depend on array of objects
 function  showGalleryText(gallery){ 
@@ -102,7 +108,7 @@ function galleryInterpolation(arr,i){
         <div class = 'col-sm-3 col-xs-6 list' >
             <img src="http://${obj.url}" alt="${obj.name} " class = 'img-thumbnail'> 
             <div class='text-muted'> 
-                <div> ${obj.name} </div>
+                <div> <b>${obj.name} </b> </div>
                 <div> ${obj.description} </div>
                 <div> ${getDatefromString(obj.date)} </div>          
             </div>
@@ -130,7 +136,7 @@ function getGalleryfromData(obj){
 //#################
 function getDatefromString(date){
     let data = new Date(date);
-    return `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}   ${data.getHours()}:${data.getMinutes()}`;
+    return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}   ${data.getHours()}:${data.getMinutes()}`;
 }
 //################# // element must be class of list return position or -1
 function getElementArrayPositionfromHtmlElement(arr,element){
@@ -144,8 +150,20 @@ function getElementArrayPositionfromHtmlElement(arr,element){
     return -1;
 }
 //#################
+function changeGallery(){
+    var value = lineSelector.value;
+    localStorage.setItem('menu', value);
+    filterGallery(gallery);
+    firstBlock.innerHTML = '';
+    for (var i = 0; i < gallery.length; i++) {
+        galleryInterpolation(gallery,i);
+    }
+}
+//#################
 btn.addEventListener('click',init);
 firstBlock.addEventListener('click',deleteImage);
+lineSelector.addEventListener('change',changeGallery);
 showNumberOfImages();
+filterGallery(statGallery);
 
 }() )
