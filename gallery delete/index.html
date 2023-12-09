@@ -4,37 +4,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>JS/Expert Example</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
  
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
-				</button>
-				<a class="navbar-brand" href="http://www.jsexpert.net/">JS/Expert</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
 
-				<ul class="nav navbar-nav hidden-sm hidden-md">
-					<li class="active"><a href="#">Работа с DOM</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="http://www.jsexpert.net/#head">Главная</a></li>
-					<li><a href="http://www.jsexpert.net/#basic">Как стать программистом</a></li>
-					<li><a href="http://www.jsexpert.net/#js">Понятный JS</a></li>
-					<li><a href="http://www.jsexpert.net/#angular">Продвинутый JS</a></li>
-					<li><a href="http://www.jsexpert.net/articles/">База знаний</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 
 	<div class="site-wrapper">
 		<div class="container">
@@ -44,12 +20,19 @@
                 <div class="col-lg-4 col-md-4">
 
 		           
-							<div class="btn btn-primary" id="play">Add Image</div><br>
-							<div></div>
-						    <br><br>
-						
+							
 
-						<select id="line-selector" class="form-control count-selector" style="margin-left: 120px;">
+							  <!-- Button trigger modal --><br><br><br><br>
+<button id = "play" type="button" class="btn btn-primary" data-bs-toggle="" data-bs-target="#staticBackdrop">
+  Add Image
+</button>
+
+
+							<div></div>
+							<div></div>
+						    <br><br>						
+
+						<select id="line-selector" class="form-control count-selector " style="margin-left: 120px; width: 200px;">
 								<option default value="0">A - Z</option>
 								<option value="1">Z - A</option>
 								<option value="2">Newest first</option>
@@ -62,11 +45,11 @@
 
 
 			<div class="row text-center first-group hide">
-				<div class="col-md-12">
+				<div class="col-md-12"><br><br>
 					<h3>Gallery</h3>
-				</div>
-				<div class="col-md-12">
-					<div id="first-line"></div>
+				</div><br><br>
+				<div class="col-12">
+					<div id="first-line" class="row justify-content-start"></div>
 				</div>
 			</div>
 			
@@ -76,6 +59,33 @@
 
 		</div>
 	</div>
+
+	  <!-- Button trigger modal -->
+	
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="staticBackdropLabel">Gallery</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        Gallery is full
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+
+
 	<script src="js/data.js"></script>
 	<script src="js/main.js"></script>
 </body>
