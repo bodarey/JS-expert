@@ -14,7 +14,8 @@ function init(){ // main function for eventListener switch the type and number o
 }
 function deleteImage(event){
     var elem = event.target;
-    btn.classList.remove('disabled');
+    btn.classList.remove('disabled');//data-bs-toggle="modal"
+    btn.removeAttribute('data-bs-toggle');
     if (elem == elem.parentElement.querySelector('.btn-success') ) {
        var temp = getElementArrayPositionfromHtmlElement(gallery,elem.parentElement);
        if (temp >= 0) {
@@ -41,7 +42,10 @@ function insertPicture(){
         galleryInterpolation(gallery,gallery.length-1);
     }
     if (gallery.length >= statGallery.length) { 
-     btn.classList.add('disabled');
+    // btn.classList.add('disabled');
+       btn.setAttribute("data-bs-toggle","modal");
+       console.log(btn);
+
     }
     showNumberOfImages();
 }
@@ -105,7 +109,7 @@ function galleryInterpolation(arr,i){
     let element = '';
     let obj = arr[i];
     element = `
-        <div class = 'col-sm-3 col-xs-6 list' >
+        <div class = 'col-sm-3 col-6 list' >
             <img src="http://${obj.url}" alt="${obj.name} " class = 'img-thumbnail'> 
             <div class='text-muted'> 
                 <div> <b>${obj.name} </b> </div>
