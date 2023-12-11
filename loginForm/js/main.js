@@ -7,6 +7,16 @@ const obj = (function() {
     var footer = document.querySelector('.start-50');
     dangerBlock.classList.add('hide');
     //form.classList.add('hide');
+    form.addEventListener('keypress', function(event){
+        if ((event.target == inputEmail) || (event.target == inputPassword ) ){
+            showHideBlock(dangerBlock,'hide');
+        }
+        //console.log(event.currentTarget);
+       // console.log(inputEmail);
+    
+    
+    
+    });
     
 
    //console.log(form);
@@ -20,18 +30,28 @@ const obj = (function() {
         createPageUser();
         console.log("test");
         //setLogAndPass('nume1','parola1');
-        if (checkInputIsEmpty(inputEmail)  &&  checkInputIsEmpty(inputPassword)) {
+        if (checkInputIsEmpty(inputEmail)  &&  checkInputIsEmpty(inputPassword) && checkValidEmail()) {
             console.log('input test');
             showHideBlock(form,'hide');
             showHideBlock(userPage,'show');
             showHideBlock(footer,'show');
-            
-           
-            
-            
+            showHideBlock(dangerBlock,'hide');
+         
         } else {
             console.log('else block');
+            showHideBlock(dangerBlock,'show');
             
+        }
+
+    }
+    //////////////////
+    function checkValidEmail() {
+        var local = inputPassword.value;
+        if (local.search(/\w+@\w+.\w+/) == 0){
+
+        return true;
+        } else {
+            return false;
         }
 
     }
@@ -88,9 +108,9 @@ const obj = (function() {
             showHideBlock(form,'show');
             showHideBlock(userPage,'hide');
             showHideBlock(footer,'hide');
-            
-
-
+            inputEmail.value = '';
+            inputPassword.value = '';
+ 
         })
 
 
@@ -127,4 +147,5 @@ var submit = document.getElementById('submit');
 
 
 submit.addEventListener('click',obj.initComponent);
+
 
