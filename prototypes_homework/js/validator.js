@@ -10,6 +10,7 @@ Validator.prototype = {
 		
     //////////////////check if data from input form is equal with data from localstorage
        	if (checkValidEmail()) {
+       		
        		if ((inputEmail.value == localStorage.getItem('user'))  && (inputPassword.value == localStorage.getItem('password'))){
   			  return true;         
        		}
