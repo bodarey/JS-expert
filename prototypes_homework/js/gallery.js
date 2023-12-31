@@ -2,8 +2,7 @@
 *  Схематическое изображение класса Галереи
 */
 
-let BaseGallery = function () { 
-    
+let BaseGallery = function () {     
     this.gallery = [];   
     this.getGalleryfromData = function(obj){        
             var arr = [];
@@ -15,17 +14,14 @@ let BaseGallery = function () {
                 newObj.date = element.date;
                 return newObj;
             });
-            return arr;// get new array of obj from data file
-        
+            return arr;// get new array of obj from data file        
     };
     this.statGallery = this.getGalleryfromData(data);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 BaseGallery.prototype = {
     initComponent: function(){
-         showGalleryText(this.statGallery);
-
-
+        showGalleryText(this.statGallery);
            //#################// show gallery with text depend on array of objects
         function  showGalleryText(gallery){ 
             
@@ -35,29 +31,23 @@ BaseGallery.prototype = {
                 block.classList.add('show');  
             }
         }
-
     }
 }
 
 
 let ExtendedGallery = function() {
-    BaseGallery.apply(this);
-   // this.property = {};
+    BaseGallery.apply(this);   
 }
-ExtendedGallery.prototype = {
-
- 
+ExtendedGallery.prototype = { 
 
     addImage: function (){
         var btn = document.getElementById('play');
-        var firstBlock = document.getElementById('first-line');
-       
+        var firstBlock = document.getElementById('first-line');       
         var bs = document.querySelectorAll('.dropdown-menu');
         var dm1 =bs[0].firstElementChild;
         var dm2 =bs[0].lastElementChild;
         var dm3 =bs[1].firstElementChild;
         var dm4 =bs[1].lastElementChild;
-
         //////////////////
         function drop(event){
             switch (event.target) {
@@ -74,11 +64,8 @@ ExtendedGallery.prototype = {
                     localStorage.setItem('drop','0001');
                     break;
                 default:
-                    // statements_def
-                    break;
+                     break;
             }
-
-//console.log(localStorage.getItem('drop'));
             changeGallery();
         }
         main2.addEventListener('click',drop);
@@ -224,14 +211,10 @@ ExtendedGallery.prototype = {
         }
         //#################
         btn.addEventListener('click',init);
-        firstBlock.addEventListener('click',deleteImage);
-        
+        firstBlock.addEventListener('click',deleteImage);        
         showNumberOfImages();
     }
 }
-
-// код функции наследования можно найти архиве, который содержится 
-// в материалах к сессии 29 (практический пример)
 function inheritance(parent, child) {
     let tempChild = child.prototype;
     child.prototype = Object.create(parent.prototype);
