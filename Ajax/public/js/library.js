@@ -13,4 +13,18 @@ localStorage.setItem("password",123456);
 /////////////////////////////////////////////////////////////////
 
 //////////////////////
-
+/*
+var data = [];
+async function getData(){
+    data = [];
+	fetch("http://localhost:3000/data")
+	.then((response)=> response.json())
+	.then((datajson)=>{data =  datajson; //console.log(datajson)
+	});
+	//console.log(data);
+	return data;
+	
+}
+data = getData();
+console.log(data);
+*/
