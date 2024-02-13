@@ -60,6 +60,7 @@ class ExtendedGallery extends BaseGallery {
     const getCreatedArray = () => {
             this.gallery = [];
             firstBlock.innerHTML='';
+            filterGallery(this.statGallery);
             for(var i=0; i<this.statGallery.length;i++){
                this.gallery.push(this.statGallery[i]);
                 galleryInterpolation(this.gallery,i);
