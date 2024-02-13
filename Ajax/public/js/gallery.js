@@ -60,12 +60,13 @@ class ExtendedGallery extends BaseGallery {
     const getCreatedArray = () => {
             this.gallery = [];
             firstBlock.innerHTML='';
-            this.statGallery.forEach( (elem,index)=>{
-               this.gallery.push(elem);
-                galleryInterpolation(this.gallery,index);
+            for(var i=0; i<this.statGallery.length;i++){
+               this.gallery.push(this.statGallery[i]);
+                galleryInterpolation(this.gallery,i);
+            }    
 
 
-            });
+            
      }       
      getCreatedArray();
     const createElement = () =>{
@@ -112,10 +113,11 @@ class ExtendedGallery extends BaseGallery {
                     .then((response)=> response.json())
                     .then((datajson)=>{data =  datajson; //console.log(datajson)
                      this.statGallery =  this.getGalleryfromData(data);
-                     console.log(this.statGallery.length);  
-                     console.log(this.gallery.length); 
+                      getCreatedArray();
+                    // console.log(this.statGallery.length);  
+                     //console.log(this.gallery.length); 
 
-                       getCreatedArray();
+                      
                            
                         
                       
