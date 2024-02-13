@@ -48,7 +48,6 @@ class LoginForm  {
 				case '1':					
 					t(main1,userPage);
 					t(true,main2,menu);	
-
 					break;
 				case '2':					
 					t(main1,main2);

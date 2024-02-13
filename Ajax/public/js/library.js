@@ -13,6 +13,8 @@ localStorage.setItem("password",123456);
 /////////////////////////////////////////////////////////////////
 function getFromObj(obj){
     var arr = [];
+    //console.log('=============');
+    //console.log(obj);
     arr = obj.map(function(element){
         var newObj ={};
         newObj.url = element.url;
@@ -118,6 +120,13 @@ function  filterGallery(arr){
         break;
     }
 }      
+
+
+
+
+
+
+
 //////////////////////// //user page function
 function t(bool=false, ...args)  { // show or hide a list of blocks
 // if blocks suppouse to be hiden bool can be omited
@@ -188,3 +197,10 @@ function showPassword(b=false){//////////////////////// show password or show **
 }
 
 //////////////
+
+
+
+
+
+
+

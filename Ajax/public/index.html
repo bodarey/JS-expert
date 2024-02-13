@@ -94,7 +94,7 @@
          <div class="row text-center  ">                
                 <div class="align-text-top">        
                <br>
-<button id = "play" type="button" class="btn btn-primary p" data-bs-toggle="" data-bs-target="#staticBackdrop">
+<button id = "play" type="button" class="btn btn-primary p" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Image
 </button>
               <div></div>
@@ -125,7 +125,7 @@
 
 
 
-  <!-- Modal -->
+  <!-- Modal  end of pictures in array-->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -144,8 +144,45 @@
     </div>
   </div>
 
+<!-- Modal form to insert new data for adding data in json file -->
 
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modall" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">URL</label>
+            <input type="text" class="form-control" id="url">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Name</label>
+            <textarea class="form-control" id="name"></textarea>
+          </div>
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">Description</label>
+            <textarea class="form-control" id="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Date</label>
+            <textarea class="form-control" id="date"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id='create' class="btn btn-secondary" data-bs-dismiss="modal">send</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
