@@ -12,8 +12,7 @@ class BaseGallery {
 
     initComponent(){
         showGalleryText(this.statGallery);
-           //#################// show gallery with text depend on array of objects
-       
+//#################// show gallery with text depend on array of objects       
     }
 }
 
@@ -36,8 +35,9 @@ class ExtendedGallery extends BaseGallery {
         var modal = document.querySelectorAll('.modal');
         var gallery =  this.gallery;
         var statGallery = this.statGallery;
-        //////////////////
-    function drop(event){
+//////////////////
+    function drop(event){// set the number 1 in one of 4 positions that will then be read for menu in local storage 
+                        //and on refresh will filter the array in the last choosen worder from menu
         switch (event.target) {
         case dm1:
             localStorage.setItem('drop','1000');
@@ -58,28 +58,23 @@ class ExtendedGallery extends BaseGallery {
     }        
 /////////////////////////////
     const getCreatedArray = () => {
-            this.gallery = [];
-            firstBlock.innerHTML='';
-            filterGallery(this.statGallery);
-            for(var i=0; i<this.statGallery.length;i++){
-               this.gallery.push(this.statGallery[i]);
-                galleryInterpolation(this.gallery,i);
-            }    
+        this.gallery = [];
+        firstBlock.innerHTML='';
+        filterGallery(this.statGallery);
+        for(var i=0; i<this.statGallery.length;i++){
+           this.gallery.push(this.statGallery[i]);
+            galleryInterpolation(this.gallery,i);
+        }
+    }       
+    getCreatedArray();
 
-
-            
-     }       
-     getCreatedArray();
-    const createElement = () =>{
+        const createElement = () =>{
             var name1 =  document.getElementById('name').value;
             var url1 = document.getElementById('url').value;
             var description1 = document.getElementById('description').value;
-            var date1 = document.getElementById('date').value;
-
-            console.log(name1);
+            var date1 = document.getElementById('date').value;        
             var gallery =  this.gallery;
             var statGallery = this.statGallery;
-
             var obj =   {
               "url": `desktopwallpapers.org.ua/mini/201507/400${url1}.jpg`,
               "name": `${name1}`,
@@ -91,8 +86,7 @@ class ExtendedGallery extends BaseGallery {
               "description":`${description1}`,
               "date": date1 || parseInt(Date.now())
             }
-              var json = JSON.stringify(obj);
-
+            var json = JSON.stringify(obj);
             const options = {
                 method: 'post',
                 headers: {
@@ -100,93 +94,37 @@ class ExtendedGallery extends BaseGallery {
                 },
                 body: json
             }
+            fetch('http://localhost:3000/data', options) //post an object to json file db.json
+                .then((response) => {
+                   return response.json();
+                })
+                .then((newData) => {
+                    console.log('Request succeeded with JSON response', newData);
+                    //console.log(newData);    
 
-            fetch('http://localhost:3000/data', options)
-            .then((response) => {
-               return response.json();
-            })
-            .then((newData) => {
-                console.log('Request succeeded with JSON response', newData);
-               // this.statGallery =  this.getGalleryfromData(newData);
-                console.log(newData);    
+                    fetch("http://localhost:3000/data") //get data json from json file after was posted a new object
+                        .then((response)=> response.json())
+                        .then((datajson)=>{data =  datajson; //console.log(datajson)
+                         this.statGallery =  this.getGalleryfromData(data);
+                          getCreatedArray();
+                          showNumberOfImages();
+                        });        
+                })
 
-                fetch("http://localhost:3000/data")
-                    .then((response)=> response.json())
-                    .then((datajson)=>{data =  datajson; //console.log(datajson)
-                     this.statGallery =  this.getGalleryfromData(data);
-                      getCreatedArray();
-                    // console.log(this.statGallery.length);  
-                     //console.log(this.gallery.length); 
-
-                      
-                           
-                        
-                      
-                    showNumberOfImages();
-
-
-
-
-
-
-                    });
-
-
-
-
-            
-            })
-
-            .catch((error) => {
-            console.log('Request failed', error);
-            });
-
-    }
-
-        
-        
-         //#################
+                .catch((error) => {
+                //console.log('Request failed', error);
+                });
+        }     
+//#################
         const init = () =>{ // main function for eventListener switch the type and number of elements in gallery
-            //insertPicture();
-
-
-                   // var galleryLength =  this.statGallery.length;
-                            //////////////// insert form from bootstrap to add new data in json file
-                           // var  exampleModal = document.getElementById('exampleModal');
-                        //    t(modal[0]);
-                          //  t(true,modal[1]);
-                            btn.setAttribute('data-bs-target', '#exampleModal');
-                            btn.setAttribute("data-bs-toggle","modal");
-                            var btnCreate = document.getElementById('create');
-                            
-
-                            
-                         
-                        btnCreate.addEventListener('click',createElement); 
-
-
-
-
-        }
-//////////////////
-        const insertPicture = () => {     
-        
-             
-
-                    
-
-
-
-
-            ////////////////
-
-
-
-
-           
+            
+            btn.setAttribute('data-bs-target', '#exampleModal');
+            btn.setAttribute("data-bs-toggle","modal");
+            var btnCreate = document.getElementById('create');       
+            btnCreate.addEventListener('click',createElement); 
         }
 /////////////////////
-        const deleteImage = (event)=>{
+        const deleteImage = (event)=>{ //delete an image from gallery
             var elem = event.target;
             btn.classList.remove('disabled');//data-bs-toggle="modal"
             btn.removeAttribute('data-bs-toggle');
@@ -201,14 +139,14 @@ class ExtendedGallery extends BaseGallery {
             }
             showNumberOfImages();
         }
-        //#################
-        const showNumberOfImages = () => {
+//#################
+        const showNumberOfImages = () => {// show the number under the add picture button
             let rez;
             var elem = btn.nextElementSibling.nextElementSibling;
             rez = this.statGallery.length - this.gallery.length;
             elem.innerHTML = `images to add ${rez}`;
         }    
-        //################## // find first available element from statGallery that is not in gallery and can be added => return this element
+//################## // find first available element from statGallery that is not in gallery and can be added => return this element
         const addToGalleryfromStatGallery = () => {
             for (var i = 0; i < this.statGallery.length; i++) {
                 if (this.gallery.indexOf(this.statGallery[i]) < 0) {
@@ -216,11 +154,9 @@ class ExtendedGallery extends BaseGallery {
                 }
             }
         }       
-        //#################
-        const changeGallery = () => {
-          //  var value = lineSelector.value;
-            var value = localStorage.getItem('drop').indexOf(1);
-           // console.log(value);
+//#################
+        const changeGallery = () => {// sort the array of gallery and show new array on page html using data saved in local storage
+            var value = localStorage.getItem('drop').indexOf(1);           
             localStorage.setItem('menu', value);
             filterGallery(this.gallery);
             firstBlock.innerHTML = '';
@@ -228,7 +164,7 @@ class ExtendedGallery extends BaseGallery {
                 galleryInterpolation(this.gallery,i);
             }
         }
-        //#################
+//#################
         btn.addEventListener('click',init);
         firstBlock.addEventListener('click',deleteImage);  
         main2.addEventListener('click',drop);      

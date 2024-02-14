@@ -37,7 +37,7 @@ function  showGalleryText(gallery){
 }
 
     //################# // element must be class of list return position or -1
- function getElementArrayPositionfromHtmlElement(arr,element){
+function getElementArrayPositionfromHtmlElement(arr,element){
     var a = element.firstElementChild.getAttribute('src');
     a = a.substring(7);
     for(var i = 0;  i < arr.length; i++){
@@ -52,8 +52,7 @@ function  showGalleryText(gallery){
     let data = new Date(date);
     return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}   ${data.getHours()}:${data.getMinutes()}`;
 }
-////////////////////////////////////////
- //#################// return new array of objects for gallery from existing data
+//#################// return new array of objects for gallery from existing data
 function getGalleryfromData(obj){ 
     var arr = [];
     arr = obj.map(function(element){
@@ -65,13 +64,12 @@ function getGalleryfromData(obj){
         return newObj;
     });
     return arr;// get new array of obj from data file
-}
-        //#################
+}       
 //#################// delete from array arr position i
 function deleteFromGallery(arr,i){
             arr.splice(i,1);
 }
-  //################# // from array arr is interpolating in htmml code position i
+ //################# // from array arr is interpolating in htmml code position i
 const galleryInterpolation = (arr,i)=>{
 	var firstBlock = document.getElementById('first-line'); 
     let element = '';
@@ -88,7 +86,7 @@ const galleryInterpolation = (arr,i)=>{
         </div>`;
     firstBlock.innerHTML += element;   
 }
-  //#################
+//#################
 function  filterGallery(arr){
     var local = localStorage.getItem('menu') || 0;
     switch (parseInt(local)) {
@@ -119,15 +117,9 @@ function  filterGallery(arr){
         default:
         break;
     }
-}      
-
-
-
-
-
-
-
-//////////////////////// //user page function
+}    
+//-----------------------------------------------------------------------------------//
+//////////////////////// //user page functions
 function t(bool=false, ...args)  { // show or hide a list of blocks
 // if blocks suppouse to be hiden bool can be omited
 	if (typeof(bool) === 'boolean') {
@@ -155,7 +147,6 @@ function t(bool=false, ...args)  { // show or hide a list of blocks
 		 block.classList.add('show');
 	}
 } 
-
 //////////
 const selectionMenu = (event) => {// menu after login page
 	var galleryItem = menu.firstElementChild.nextElementSibling.firstElementChild;

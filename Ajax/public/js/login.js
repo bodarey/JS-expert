@@ -8,7 +8,7 @@ class LoginForm  {
 		this.gallery = galleryModule;
 	}	
 	initComponent(){	
-		//
+///////////////////////		
 		inputEmail.value ='user@user.com';
        	inputPassword.value ='123456';
        	t(main2);
@@ -40,7 +40,7 @@ class LoginForm  {
 	        }
 	        });
 		}    			
-		/////	
+///////////////////////		
 		menu.addEventListener('click',selectionMenu);
 		
 		function showPageRefresh(){
@@ -63,7 +63,7 @@ class LoginForm  {
 					break;
 			}
 		}
-		/////
+///////////////////////		
 		var showColorLink = (event) => {	
 			var a = [];
 			a.push(menu.firstElementChild.nextElementSibling.firstElementChild);
