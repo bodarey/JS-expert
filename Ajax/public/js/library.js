@@ -13,8 +13,6 @@ localStorage.setItem("password",123456);
 /////////////////////////////////////////////////////////////////
 function getFromObj(obj){
     var arr = [];
-    //console.log('=============');
-    //console.log(obj);
     arr = obj.map(function(element){
         var newObj ={};
         newObj.url = element.url;

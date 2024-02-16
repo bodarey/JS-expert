@@ -72,7 +72,9 @@ class ExtendedGallery extends BaseGallery {
             var name1 =  document.getElementById('name').value;
             var url1 = document.getElementById('url').value;
             var description1 = document.getElementById('description').value;
-            var date1 = document.getElementById('date').value;        
+            var date1 = document.getElementById('date').value.split(",");  
+            date1 = date1.map(function(date){return parseInt(date)});
+            date1 = new Date(date1[0],date1[1]-1,date1[2],date1[3]||0,date1[4]||0,date1[5]||0).getTime();  
             var gallery =  this.gallery;
             var statGallery = this.statGallery;
             var obj =   {
