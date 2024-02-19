@@ -1,26 +1,3 @@
 {
-  "data": [
-    {
-      "id": "1",
-      "url": "desktopwallpapers.org.ua/mini/201507/40059.jpg",
-      "name": "ford",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "ford description",
-      "date": 1707949839360
-    },
-    {
-      "id": "2",
-      "url": "desktopwallpapers.org.ua/mini/201507/40063.jpg",
-      "name": "",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "",
-      "date": 915148800000
-    }
-  ]
+  "data": []
 }

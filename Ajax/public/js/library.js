@@ -15,6 +15,7 @@ function getFromObj(obj){
     var arr = [];
     arr = obj.map(function(element){
         var newObj ={};
+        newObj.id = element.id;
         newObj.url = element.url;
         newObj.name = element.name;
         newObj.description = element.description;
@@ -55,6 +56,7 @@ function getGalleryfromData(obj){
     var arr = [];
     arr = obj.map(function(element){
         var newObj ={};
+         newObj.id = element.id;
         newObj.url = element.url;
         newObj.name = element.name;
         newObj.description = element.description;
@@ -80,7 +82,8 @@ const galleryInterpolation = (arr,i)=>{
                 <div> ${obj.description} </div>
                 <div> ${getDatefromString(obj.date)} </div>          
             </div>
-            <div class="btn btn-success">delete Image</div></br></br>
+            <div class="btn btn-sm btn-secondary delete">delete Image</div>
+            <div class="btn btn-sm btn-light update">update Image</div></br></br>
         </div>`;
     firstBlock.innerHTML += element;   
 }

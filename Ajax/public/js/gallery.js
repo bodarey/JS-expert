@@ -58,12 +58,12 @@ class ExtendedGallery extends BaseGallery {
     }        
 /////////////////////////////
     const getCreatedArray = () => {
-        this.gallery = [];
+        gallery = [];
         firstBlock.innerHTML='';
-        filterGallery(this.statGallery);
-        for(var i=0; i<this.statGallery.length;i++){
-           this.gallery.push(this.statGallery[i]);
-            galleryInterpolation(this.gallery,i);
+        filterGallery(statGallery);
+        for(var i=0; i<statGallery.length;i++){
+           gallery.push(statGallery[i]);
+            galleryInterpolation(gallery,i);
         }
     }       
     getCreatedArray();
@@ -75,12 +75,11 @@ class ExtendedGallery extends BaseGallery {
             var date1 = document.getElementById('date').value.split(",");  
             date1 = date1.map(function(date){return parseInt(date)});
             date1 = new Date(date1[0],date1[1]-1,date1[2],date1[3]||0,date1[4]||0,date1[5]||0).getTime();  
-            var gallery =  this.gallery;
-            var statGallery = this.statGallery;
+           
             var obj =   {
               "url": `desktopwallpapers.org.ua/mini/201507/400${url1}.jpg`,
               "name": `${name1}`,
-              "id": `${this.statGallery.length+1}`,
+              "id": `${statGallery.length+1}`,
               "params": {
                 "status": true,
                 "progress": "14"
@@ -107,9 +106,9 @@ class ExtendedGallery extends BaseGallery {
                     fetch("http://localhost:3000/data") //get data json from json file after was posted a new object
                         .then((response)=> response.json())
                         .then((datajson)=>{data =  datajson; //console.log(datajson)
-                         this.statGallery =  this.getGalleryfromData(data);
+                         statGallery =  getGalleryfromData(data);
                           getCreatedArray();
-                          showNumberOfImages();
+                         // showNumberOfImages();
                         });        
                 })
 
@@ -128,26 +127,44 @@ class ExtendedGallery extends BaseGallery {
 /////////////////////
         const deleteImage = (event)=>{ //delete an image from gallery
             var elem = event.target;
-            btn.classList.remove('disabled');//data-bs-toggle="modal"
-            btn.removeAttribute('data-bs-toggle');
-            if (elem == elem.parentElement.querySelector('.btn-success') ) {
-               var temp = getElementArrayPositionfromHtmlElement(this.gallery,elem.parentElement);
+           // btn.classList.remove('disabled');//data-bs-toggle="modal"
+            //btn.removeAttribute('data-bs-toggle');
+            if (elem == elem.parentElement.querySelector('.delete') ) {
+               var temp = getElementArrayPositionfromHtmlElement(statGallery,elem.parentElement);
                if (temp >= 0) {
-                    deleteFromGallery(this.gallery,temp);
-                    elem.parentElement.remove();
-                    btn.setAttribute('data-bs-target', '#exampleModal');
-                    btn.setAttribute("data-bs-toggle","modal");
+
+                    const options = {
+                    method: 'delete'              
+                    }
+                    fetch(`http://localhost:3000/data/${statGallery[temp].id}`, options)
+                    .then((response) => {
+                       return response.json();               
+                    })
+                    .then((newData) => {
+                        console.log('Request succeeded with JSON response', newData);
+                        fetch("http://localhost:3000/data") //get data json from json file after was posted a new object
+                            .then((response)=> response.json())
+                            .then((datajson)=>{//data =  datajson; //console.log(datajson)
+                                 statGallery =  getGalleryfromData(datajson);
+                                 getCreatedArray();
+                             });                     
+                    })
+
+                    .catch((error) => {
+                    console.log('Request failed', error);
+                    });
+
                }
             }
-            showNumberOfImages();
+           // showNumberOfImages();
         }
 //#################
-        const showNumberOfImages = () => {// show the number under the add picture button
+       /* const showNumberOfImages = () => {// show the number under the add picture button
             let rez;
             var elem = btn.nextElementSibling.nextElementSibling;
             rez = this.statGallery.length - this.gallery.length;
             elem.innerHTML = `images to add ${rez}`;
-        }    
+        }    */
 //################## // find first available element from statGallery that is not in gallery and can be added => return this element
         const addToGalleryfromStatGallery = () => {
             for (var i = 0; i < this.statGallery.length; i++) {
@@ -170,7 +187,7 @@ class ExtendedGallery extends BaseGallery {
         btn.addEventListener('click',init);
         firstBlock.addEventListener('click',deleteImage);  
         main2.addEventListener('click',drop);      
-        showNumberOfImages();
+       // showNumberOfImages();
     }
 }
 
