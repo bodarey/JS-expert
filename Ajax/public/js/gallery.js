@@ -35,38 +35,40 @@ class ExtendedGallery extends BaseGallery {
         var modal = document.querySelectorAll('.modal');
         var gallery =  this.gallery;
         var statGallery = this.statGallery;
+        var bu = document.getElementById('update');          
+        var bc = document.getElementById('create'); 
 //////////////////
-    function drop(event){// set the number 1 in one of 4 positions that will then be read for menu in local storage 
-                        //and on refresh will filter the array in the last choosen worder from menu
-        switch (event.target) {
-        case dm1:
-            localStorage.setItem('drop','1000');
-            break;
-        case dm2:
-            localStorage.setItem('drop','0100');
-            break;                   
-        case dm3:
-            localStorage.setItem('drop','0010');
-            break;
-        case dm4:
-            localStorage.setItem('drop','0001');
-            break;
-        default:
-             break;
-        }
-        changeGallery();
-    }        
+        function drop(event){// set the number 1 in one of 4 positions that will then be read for menu in local storage 
+                            //and on refresh will filter the array in the last choosen worder from menu
+            switch (event.target) {
+            case dm1:
+                localStorage.setItem('drop','1000');
+                break;
+            case dm2:
+                localStorage.setItem('drop','0100');
+                break;                   
+            case dm3:
+                localStorage.setItem('drop','0010');
+                break;
+            case dm4:
+                localStorage.setItem('drop','0001');
+                break;
+            default:
+                 break;
+            }
+            changeGallery();
+        }        
 /////////////////////////////
-    const getCreatedArray = () => {
-        gallery = [];
-        firstBlock.innerHTML='';
-        filterGallery(statGallery);
-        for(var i=0; i<statGallery.length;i++){
-           gallery.push(statGallery[i]);
-            galleryInterpolation(gallery,i);
-        }
-    }       
-    getCreatedArray();
+        const getCreatedArray = () => {
+            gallery = [];
+            firstBlock.innerHTML='';
+            filterGallery(statGallery);
+            for(var i=0; i<statGallery.length;i++){
+               gallery.push(statGallery[i]);
+                galleryInterpolation(gallery,i);
+            }
+        }       
+        getCreatedArray();
 
         const createElement = () =>{
             var name1 =  document.getElementById('name').value;
@@ -118,7 +120,9 @@ class ExtendedGallery extends BaseGallery {
         }     
 //#################
         const init = () =>{ // main function for eventListener switch the type and number of elements in gallery
-            
+                  
+            t(bu);
+            t(true,bc);   
             btn.setAttribute('data-bs-target', '#exampleModal');
             btn.setAttribute("data-bs-toggle","modal");
             var btnCreate = document.getElementById('create');       
@@ -126,9 +130,7 @@ class ExtendedGallery extends BaseGallery {
         }
 /////////////////////
         const deleteImage = (event)=>{ //delete an image from gallery
-            var elem = event.target;
-           // btn.classList.remove('disabled');//data-bs-toggle="modal"
-            //btn.removeAttribute('data-bs-toggle');
+            var elem = event.target;         
             if (elem == elem.parentElement.querySelector('.delete') ) {
                var temp = getElementArrayPositionfromHtmlElement(statGallery,elem.parentElement);
                if (temp >= 0) {
@@ -159,6 +161,76 @@ class ExtendedGallery extends BaseGallery {
            // showNumberOfImages();
         }
 //#################
+        const updateImage = (event) =>{
+            var elem = event.target;         
+            if (elem == elem.parentElement.querySelector('.update') ) {
+                var temp = getElementArrayPositionfromHtmlElement(statGallery,elem.parentElement);
+                var tagName = document.getElementById('create');
+                t(bc);
+                t(true,bu);                
+                elem.setAttribute("data-bs-toggle","modal");
+                console.log(elem);
+                var name1 =  document.getElementById('name');
+                var url1 = document.getElementById('url');
+                var description1 = document.getElementById('description');
+                var date1 = document.getElementById('date');  
+               
+                
+                var elem = statGallery[temp];
+                name1.value = elem.name;
+                url1.value = elem.url;
+                description1.value =elem.description;
+                date1.value = elem.date;       
+
+                const updateJS =()=>{
+                     name1 =  document.getElementById('name');
+                     url1 = document.getElementById('url');
+                     description1 = document.getElementById('description');
+                     date1 = document.getElementById('date');                     
+
+                    var obj =   {                             
+                      "url": `${url1.value}`,
+                      "name": `${name1.value}`,
+                      "params": {
+                        "status": true,
+                        "progress": "14"
+                      },
+                      "description":`${description1.value}`,
+                      "date": parseInt(date1.value)  || parseInt(Date.now())
+                    }
+                    var json = JSON.stringify(obj);
+
+                    const options = {
+                        method: 'put',
+                        headers: {
+                        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        body: json              
+                    }
+                    fetch(`http://localhost:3000/data/${statGallery[temp].id}`, options)
+                    .then((response) => {
+                           return response.json();               
+                    })
+                    .then((newData) => {
+                            console.log('Request succeeded with JSON response', newData);
+                            fetch("http://localhost:3000/data") //get data json from json file after was posted a new object
+                                .then((response)=> response.json())
+                                .then((datajson)=>{//data =  datajson; //console.log(datajson)
+                                     statGallery =  getGalleryfromData(datajson);
+                                     getCreatedArray();
+                                 });                     
+                    })
+                    .catch((error) => {
+                        console.log('Request failed', error);
+                    });
+                }
+                bu.addEventListener('click',updateJS);
+
+
+            }        
+
+        }
+//#################
        /* const showNumberOfImages = () => {// show the number under the add picture button
             let rez;
             var elem = btn.nextElementSibling.nextElementSibling;
@@ -179,13 +251,14 @@ class ExtendedGallery extends BaseGallery {
             localStorage.setItem('menu', value);
             filterGallery(this.gallery);
             firstBlock.innerHTML = '';
-            for (var i = 0; i < this.gallery.length; i++) {
-                galleryInterpolation(this.gallery,i);
+            for (var i = 0; i < gallery.length; i++) {
+                galleryInterpolation(gallery,i);
             }
         }
 //#################
         btn.addEventListener('click',init);
         firstBlock.addEventListener('click',deleteImage);  
+        firstBlock.addEventListener('click',updateImage);  
         main2.addEventListener('click',drop);      
        // showNumberOfImages();
     }

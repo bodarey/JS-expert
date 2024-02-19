@@ -83,7 +83,9 @@ const galleryInterpolation = (arr,i)=>{
                 <div> ${getDatefromString(obj.date)} </div>          
             </div>
             <div class="btn btn-sm btn-secondary delete">delete Image</div>
-            <div class="btn btn-sm btn-light update">update Image</div></br></br>
+            <button  type="button" class="btn btn-sm btn-light update" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  update Image
+			</button>
         </div>`;
     firstBlock.innerHTML += element;   
 }
