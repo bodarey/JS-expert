@@ -12,17 +12,6 @@
       "date": 1422153200637
     },
     {
-      "url": "desktopwallpapers.org.ua/mini/201507/40068.jpg",
-      "name": "DEWOO",
-      "id": "2",
-      "params": {
-        "status": true,
-        "progress": "88"
-      },
-      "description": "Lorem ipsum dolor sit amet",
-      "date": 1421153200637
-    },
-    {
       "url": "desktopwallpapers.org.ua/mini/201507/40067.jpg",
       "name": "FOLKSWAGEN",
       "id": "3",
@@ -32,28 +21,6 @@
       },
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
       "date": 1426153200637
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40057.jpg",
-      "name": "FERRARI",
-      "id": "4",
-      "params": {
-        "status": true,
-        "progress": "38"
-      },
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
-      "date": 1428153200637
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40068.jpg",
-      "name": "newttttttttt",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "ewttttttttttt",
-      "date": 1708384642896,
-      "id": "5"
     },
     {
       "url": "desktopwallpapers.org.ua/mini/201507/40064.jpg",
@@ -76,50 +43,28 @@
       },
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
       "date": 1482153200637
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "user": "use@user.com",
+      "password": "123456"
     },
     {
-      "url": "desktopwallpapers.org.ua/mini/201507/40062.jpg",
-      "name": "FORD",
-      "id": "8",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
-      "date": 1442153200637
+      "id": "1",
+      "user": "user@user.com",
+      "password": "123456"
     },
     {
-      "url": "desktopwallpapers.org.ua/mini/201507/40068.jpg",
-      "name": "newttttttttt",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "ewttttttttttt",
-      "date": 1708384642896,
-      "id": "9"
+      "id": "1",
+      "user": "user@user.cm",
+      "password": "123456"
     },
     {
-      "url": "desktopwallpapers.org.ua/mini/201507/40058.jpg",
-      "name": "RENAULTwerrrrrrrr",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "werwrLorem ipsum dolor sit amet",
-      "date": 1322159200637,
-      "id": "10"
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40068.jpg",
-      "name": "newttttttttt",
-      "params": {
-        "status": true,
-        "progress": "14"
-      },
-      "description": "ewttttttttttt",
-      "date": 1708384642896,
-      "id": "11"
+      "id": "1",
+      "user": "user@user.com",
+      "password": "123456"
     }
   ]
 }

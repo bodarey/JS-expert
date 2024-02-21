@@ -1,18 +1,22 @@
 
 
 class Validator{
-	constructor(){}
+	constructor(){
+		
+	}
 	
 
 //////////
 
-	isValid(){
+	isValid(jsonObj,mainObj){
 
 		
-    //////////////////check if data from input form is equal with data from localstorage
+    //////////////////
        	if (checkValidEmail()) {
        		
-       		if ((inputEmail.value == localStorage.getItem('user'))  && (inputPassword.value == localStorage.getItem('password'))){
+       		if ((jsonObj.user == mainObj.user)  && (jsonObj.password == mainObj.password)){
+       			console.log(jsonObj.user);
+       			console.log(mainObj.user);
   			  return true;         
        		}
      	}
@@ -31,6 +35,7 @@ class Validator{
 
     ////////////////////////
 	}	
+	
 }
 
 //////////

@@ -6,6 +6,9 @@ class LoginForm  {
 	constructor(validatorModule, galleryModule){
 		this.validator = validatorModule;
 		this.gallery = galleryModule;
+		this.user = '';
+		this.password ='';
+		
 	}	
 	initComponent(){	
 ///////////////////////		
@@ -80,27 +83,120 @@ class LoginForm  {
 					elem.classList.remove('text-dark');
 				}
 			 });
-			if (event.target == menu.lastElementChild) {
+			if (event.target == menu.lastElementChild) { // is exit element from menu
 				let elem = menu.lastElementChild;
 				elem.classList.add('text-dark');
 				elem.classList.remove('text-danger');
+				const options = {
+                    method: 'delete'              
+                    }
+                    //deleting from json login link object login with id:1
+                    fetch(`http://localhost:3000/login/1`, options)
+                    .then((response) => {
+                       return response.json();               
+                    })
+                    .then((newData) => {
+                        console.log('Request succeeded with JSON response', newData);
+                        
+                                            
+                    })
+
+                    .catch((error) => {
+                    console.log('Request failed', error);
+                });         
+                    localStorage.setItem('user','');
+	                localStorage.setItem('password','');
 			}
 		};
 		menu.addEventListener('click',showColorLink);
 		showPageRefresh();
+
+
 		const butonForm = () => { // function to enter the form if is valid or not
-			if (this.validator.isValid()){
+////////////////////////////////////////////////////////////////////////
+			const openGallery =()=>{
 				t(false,form,dangerBlock);
   				t(true,main2,menu);
   				menu.firstElementChild.nextElementSibling.firstElementChild.classList.remove('text-dark');
 				menu.firstElementChild.nextElementSibling.firstElementChild.classList.add('text-danger');
 				//createPageUser();		
-				localStorage.setItem('refresh',1);		
-						
-			} else{					
-				t(false,main2,menu);
-				t(true,dangerBlock,form);
+				localStorage.setItem('refresh',1);	
 			}
+
+			if ((localStorage.getItem('user') == this.user) && localStorage.getItem('password') == this.password){
+				openGallery();
+			}
+			else {
+				var obj =   {
+	 			  "id": `1`,	
+	              "user": `${inputEmail.value}`,
+	              "password": `${inputPassword.value}`
+	             
+	            }
+	            var json = JSON.stringify(obj);
+	            const options = {
+	                method: 'post',
+	                headers: {
+	                'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	                },
+	                body: json
+	            }
+
+
+
+	            fetch('http://localhost:3000/login', options) //post an object to json file db.json
+	                .then((response) => {
+	                   return response.json();
+	                })
+	                .then((newData) => {
+	                    console.log('Request succeeded with JSON response', newData);
+	                    //console.log(newData);    
+
+	                    fetch("http://localhost:3000/login") //get data json from json file after was posted a new object
+	                        .then((response)=> response.json())
+	                        .then((datajson)=>{ 
+	                        	var json = datajson[datajson.length-1];
+	                        	localStorage.setItem('user',obj.user);
+	                        	localStorage.setItem('password',obj.password);
+
+	                        	var objlogin ={
+	                        		user : this.user,
+	                        		password : this.password
+	                        	}
+
+	                        	if (this.validator.isValid(json,objlogin)){
+									openGallery();	
+											
+								} else{			console.log('not valid');	
+								console.log('json.user', json.user);	
+								console.log('objlogin.user', objlogin.user);	
+									t(false,main2,menu);
+									t(true,dangerBlock,form);
+								}
+
+
+	                        
+	                        });        
+	                })
+
+	                .catch((error) => {
+	                //console.log('Request failed', error);
+	                });             
+
+
+				
+			}
+			
+ 			
+
+
+/////////////////////////////////////////////
+
+
+
+
+
+			
 		}
 		btn.addEventListener('click',butonForm);	
 	}
@@ -111,5 +207,9 @@ class LoginForm  {
 
 	showGallery(){
 		this.gallery.initComponent();
+	}
+	addUserPassword(obj){
+		this.user = obj.user;
+		this.password = obj.password;
 	}
 }
