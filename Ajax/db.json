@@ -10,59 +10,26 @@
       },
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc unt ut labore et dolore magna aliqua.",
       "date": 1422153200637
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40067.jpg",
-      "name": "FOLKSWAGEN",
-      "id": "3",
-      "params": {
-        "status": false,
-        "progress": "64"
-      },
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
-      "date": 1426153200637
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40064.jpg",
-      "name": "MERCEDESS",
-      "id": "6",
-      "params": {
-        "status": true,
-        "progress": "83"
-      },
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
-      "date": 1442153200637
-    },
-    {
-      "url": "desktopwallpapers.org.ua/mini/201507/40063.jpg",
-      "name": "SKODA",
-      "id": "7",
-      "params": {
-        "status": true,
-        "progress": "49"
-      },
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt ut labore et dolore magna aliqua.",
-      "date": 1482153200637
     }
   ],
   "login": [
     {
-      "id": "1",
+      "id": "48bd",
       "user": "use@user.com",
       "password": "123456"
     },
     {
-      "id": "1",
+      "id": "dd6b",
+      "user": "use@user.com",
+      "password": "123456"
+    },
+    {
+      "id": "a079",
       "user": "user@user.com",
       "password": "123456"
     },
     {
-      "id": "1",
-      "user": "user@user.cm",
-      "password": "123456"
-    },
-    {
-      "id": "1",
+      "id": "86dd",
       "user": "user@user.com",
       "password": "123456"
     }

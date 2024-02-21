@@ -71,6 +71,7 @@ class ExtendedGallery extends BaseGallery {
         getCreatedArray();
 
         const createElement = () =>{
+            
             var name1 =  document.getElementById('name').value;
             var url1 = document.getElementById('url').value;
             var description1 = document.getElementById('description').value;
@@ -120,6 +121,11 @@ class ExtendedGallery extends BaseGallery {
         }     
 //#################
         const init = () =>{ // main function for eventListener switch the type and number of elements in gallery
+            document.getElementById('name').value='';
+            document.getElementById('url').value='';
+            document.getElementById('description').value='';
+            document.getElementById('date').value='';
+          //  console.log(document.getElementById('name').value);
                   
             t(bu);
             t(true,bc);   

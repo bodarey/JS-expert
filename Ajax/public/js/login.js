@@ -86,26 +86,9 @@ class LoginForm  {
 			if (event.target == menu.lastElementChild) { // is exit element from menu
 				let elem = menu.lastElementChild;
 				elem.classList.add('text-dark');
-				elem.classList.remove('text-danger');
-				const options = {
-                    method: 'delete'              
-                    }
-                    //deleting from json login link object login with id:1
-                    fetch(`http://localhost:3000/login/1`, options)
-                    .then((response) => {
-                       return response.json();               
-                    })
-                    .then((newData) => {
-                        console.log('Request succeeded with JSON response', newData);
-                        
-                                            
-                    })
-
-                    .catch((error) => {
-                    console.log('Request failed', error);
-                });         
-                    localStorage.setItem('user','');
-	                localStorage.setItem('password','');
+				elem.classList.remove('text-danger');				    
+                localStorage.setItem('user','');
+	            localStorage.setItem('password','');
 			}
 		};
 		menu.addEventListener('click',showColorLink);
@@ -128,7 +111,7 @@ class LoginForm  {
 			}
 			else {
 				var obj =   {
-	 			  "id": `1`,	
+	 			 
 	              "user": `${inputEmail.value}`,
 	              "password": `${inputPassword.value}`
 	             
